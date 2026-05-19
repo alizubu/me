@@ -321,7 +321,7 @@
             <div class="footerContent fluid-container" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4" data-scroll-target="#colophon" data-scroll-position="bottom">
                 <p id="year">Made With ❤️<span class="d-none d-md-inline">© </span>2023 — Ali Zubu</p>
                 <div class="d-flex">
-                    <p><a href="#">Privacy</a> / <a href="https://alizubu.github.io/cookies/">Cookies</a></p>
+                    <p><a href="privacy.html">Privacy</a> / <a href="cookies.html">Cookies</a></p>
                 </div>
             </div>
         </footer>
@@ -352,37 +352,41 @@
         });
     </script>
     <script>
-        // UPDATE: I was able to get this working again... Enjoy!
+        // Custom cursor — desktop only (skip on touch devices)
+        var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
         var cursor = document.querySelector('.cursor');
         var cursorinner = document.querySelector('.cursor2');
-        var a = document.querySelectorAll('a');
-        document.addEventListener('mousemove', function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-        });
-        document.addEventListener('mousemove', function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            cursorinner.style.left = x + 'px';
-            cursorinner.style.top = y + 'px';
-        });
-        document.addEventListener('mousedown', function() {
-            cursor.classList.add('click');
-            cursorinner.classList.add('cursorinnerhover')
-        });
-        document.addEventListener('mouseup', function() {
-            cursor.classList.remove('click')
-            cursorinner.classList.remove('cursorinnerhover')
-        });
-        a.forEach(item => {
-            item.addEventListener('mouseover', () => {
-                cursor.classList.add('hover');
+
+        if (!isTouchDevice) {
+            var a = document.querySelectorAll('a');
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
             });
-            item.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
+            document.addEventListener('mousemove', function(e) {
+                cursorinner.style.left = e.clientX + 'px';
+                cursorinner.style.top = e.clientY + 'px';
             });
-        })
+            document.addEventListener('mousedown', function() {
+                cursor.classList.add('click');
+                cursorinner.classList.add('cursorinnerhover')
+            });
+            document.addEventListener('mouseup', function() {
+                cursor.classList.remove('click')
+                cursorinner.classList.remove('cursorinnerhover')
+            });
+            a.forEach(item => {
+                item.addEventListener('mouseover', () => {
+                    cursor.classList.add('hover');
+                });
+                item.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        } else {
+            // Hide cursor elements on touch devices
+            cursor.style.display = 'none';
+            cursorinner.style.display = 'none';
+        }
     </script>
     <script>
         /* --- Scroll text right to left --- */

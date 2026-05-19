@@ -130,6 +130,17 @@ html {
   transition: width .3s, height .3s, opacity .3s;
 }
 
+/* Hide custom cursor on touch/mobile devices */
+@media (hover: none), (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  .cursor,
+  .cursor2 {
+    display: none !important;
+  }
+}
+
 .hover {
   background-color: red;
   opacity: 0.5;
