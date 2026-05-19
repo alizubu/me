@@ -318,16 +318,6 @@
                 </div>
             </div>
         </section>
-        <!-- Matter.js Physics Playground -->
-        <section class="section physics-section" data-scroll-section>
-            <div class="fluid-container">
-                <p class="physics-hint small" data-scroll data-scroll-speed="2">
-                    <span class="ec ec-point-down"></span> drag the letters
-                </p>
-            </div>
-            <canvas id="matter-canvas"></canvas>
-        </section>
-
         <footer id="colophon" class="site-footer" data-scroll-section>
             <div class="footerContent fluid-container" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4" data-scroll-target="#colophon" data-scroll-position="bottom">
                 <p id="year">Made With ❤️<span class="d-none d-md-inline">© </span>2023 — Ali Zubu</p>
@@ -346,7 +336,6 @@
     <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <script>
         /* ── Enhanced Loader with GSAP ── */
         (function () {
@@ -544,168 +533,6 @@
         };
 
         new p5(sketch, document.querySelector('.section.hero') || document.body);
-    })();
-    </script>
-
-    <!-- ── Matter.js — Physics Letter Playground ── -->
-    <script>
-    (function () {
-        var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-        var canvasEl = document.getElementById('matter-canvas');
-        if (!canvasEl) return;
-
-        var Engine     = Matter.Engine;
-        var Render     = Matter.Render;
-        var Runner     = Matter.Runner;
-        var Bodies     = Matter.Bodies;
-        var Body       = Matter.Body;
-        var Events     = Matter.Events;
-        var Mouse      = Matter.Mouse;
-        var MouseConstraint = Matter.MouseConstraint;
-        var Composite  = Matter.Composite;
-        var World      = Matter.World;
-
-        var section = document.querySelector('.physics-section');
-        var W = section.offsetWidth;
-        var H = section.offsetHeight;
-
-        canvasEl.width  = W;
-        canvasEl.height = H;
-
-        var engine = Engine.create({ gravity: { y: 0.6 } });
-        var world  = engine.world;
-
-        var render = Render.create({
-            canvas: canvasEl,
-            engine: engine,
-            options: {
-                width: W,
-                height: H,
-                background: 'transparent',
-                wireframes: false,
-                pixelRatio: window.devicePixelRatio || 1
-            }
-        });
-
-        // Walls: floor + side walls
-        var thickness = 60;
-        var walls = [
-            Bodies.rectangle(W / 2, H + thickness / 2, W * 2, thickness, { isStatic: true, label: 'floor',      render: { fillStyle: 'transparent' } }),
-            Bodies.rectangle(-thickness / 2, H / 2, thickness, H * 2,    { isStatic: true, label: 'wallLeft',   render: { fillStyle: 'transparent' } }),
-            Bodies.rectangle(W + thickness / 2, H / 2, thickness, H * 2, { isStatic: true, label: 'wallRight',  render: { fillStyle: 'transparent' } }),
-        ];
-        World.add(world, walls);
-
-        // Letters
-        var letters  = ['A', 'L', 'I', 'Z', 'U', 'B', 'U'];
-        var colors   = ['#bc3a3f', '#a53034', '#e5797d', '#bc3a3f', '#a53034', '#e5797d', '#bc3a3f'];
-        var fontSize = isMobile ? Math.min(W / 8, 72) : Math.min(W / 9, 100);
-        var boxSize  = fontSize * 1.1;
-        var spacing  = W / (letters.length + 1);
-
-        var letterBodies = letters.map(function (letter, i) {
-            var x = spacing * (i + 1);
-            var y = -boxSize * (i % 3 + 1); // stagger drop start
-            var body = Bodies.rectangle(x, y, boxSize, boxSize, {
-                restitution: 0.55,
-                friction: 0.1,
-                frictionAir: 0.018,
-                label: letter,
-                render: {
-                    fillStyle: colors[i],
-                    strokeStyle: 'rgba(255,255,255,0.12)',
-                    lineWidth: 2
-                }
-            });
-            body.letter     = letter;
-            body.letterColor = '#fae6e7';
-            body.fontSize   = fontSize;
-            return body;
-        });
-
-        World.add(world, letterBodies);
-
-        // Mouse interaction
-        var mouse = Mouse.create(canvasEl);
-        var mConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 0.2,
-                render: { visible: false }
-            }
-        });
-        World.add(world, mConstraint);
-        render.mouse = mouse;
-
-        // Draw letters on canvas using afterRender
-        Events.on(render, 'afterRender', function () {
-            var ctx = render.context;
-            letterBodies.forEach(function (body) {
-                ctx.save();
-                ctx.translate(body.position.x, body.position.y);
-                ctx.rotate(body.angle);
-                ctx.font = 'bold ' + body.fontSize + 'px Nognathy, serif';
-                ctx.textAlign    = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillStyle    = body.letterColor;
-                ctx.shadowColor  = 'rgba(0,0,0,0.25)';
-                ctx.shadowBlur   = 8;
-                ctx.fillText(body.label, 0, 4);
-                ctx.restore();
-            });
-        });
-
-        // Resize handler
-        function resizeMatter() {
-            W = section.offsetWidth;
-            H = section.offsetHeight;
-            canvasEl.width  = W;
-            canvasEl.height = H;
-            render.options.width  = W;
-            render.options.height = H;
-            render.canvas.width   = W;
-            render.canvas.height  = H;
-
-            // reposition floor
-            Body.setPosition(walls[0], { x: W / 2, y: H + thickness / 2 });
-            Body.setPosition(walls[2], { x: W + thickness / 2, y: H / 2 });
-        }
-        window.addEventListener('resize', resizeMatter);
-
-        // Shake on click / tap
-        function shakeLetters() {
-            letterBodies.forEach(function (body) {
-                Body.applyForce(body, body.position, {
-                    x: (Math.random() - 0.5) * 0.08,
-                    y: -Math.random() * 0.12
-                });
-            });
-        }
-        canvasEl.addEventListener('click', shakeLetters);
-        canvasEl.addEventListener('touchstart', shakeLetters, { passive: true });
-
-        // Start
-        Render.run(render);
-        var runner = Runner.create();
-        Runner.run(runner, engine);
-
-        // Lazy start: only run physics when section is in viewport
-        var started = false;
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting && !started) {
-                    started = true;
-                    // re-drop letters
-                    letterBodies.forEach(function (b, i) {
-                        Body.setPosition(b, { x: spacing * (i + 1), y: -boxSize * (i % 3 + 1) });
-                        Body.setVelocity(b, { x: 0, y: 0 });
-                        Body.setAngularVelocity(b, 0);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(section);
-
     })();
     </script>
 
