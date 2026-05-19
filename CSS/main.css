@@ -73,36 +73,97 @@ html {
 
 /* Loader */
 .loader {
-  position: absolute;
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
-  font-family: Nognathy !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: #000;
-  z-index: 1;
-  color: #fae6e7;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: all;
 }
 
+/* Two panels that cover the screen */
+.loader__panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: #0a0404;
+  will-change: transform;
+}
+.loader__panel--left  { left: 0; }
+.loader__panel--right { right: 0; }
+
+/* Central content */
+.loader__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  will-change: opacity, transform;
+}
+
+.loader__number {
+  font-family: Nognathy, sans-serif;
+  font-size: clamp(6rem, 20vw, 15rem);
+  color: #fae6e7;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+}
+
+.loader__pct {
+  font-family: "Matahari", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: #a53034;
+  align-self: flex-end;
+  margin-bottom: 0.3em;
+}
+
+.loader__label {
+  font-family: "Matahari", sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  color: #fae6e7;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* Progress bar */
+.loader__progress {
+  width: clamp(140px, 28vw, 340px);
+  height: 1px;
+  background: rgba(250, 230, 231, 0.15);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.loader__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a53034, #e5797d);
+  border-radius: 2px;
+  transition: none; /* driven entirely by GSAP */
+}
+
+/* Keep original .counter class name working */
 .counter {
-  font-size: 15rem !important;
+  /* font-size is set by .loader__number; keep this for legacy reference */
 }
 @media (max-width: 767.98px) {
-  .counter {
-    font-size: 8rem !important;
+  .loader__number {
+    font-size: clamp(4.5rem, 22vw, 8rem);
   }
 }
 
-.bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  mix-blend-mode: difference;
-  background: #fff;
-}
+/* ---- old .bar is no longer used ---- */
 
 /* cursor */
 .cursor {
@@ -128,6 +189,17 @@ html {
   transform: translate(-50%, -50%);
   pointer-events: none;
   transition: width .3s, height .3s, opacity .3s;
+}
+
+/* Hide custom cursor on touch/mobile devices */
+@media (hover: none), (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  .cursor,
+  .cursor2 {
+    display: none !important;
+  }
 }
 
 .hover {
