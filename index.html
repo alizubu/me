@@ -35,21 +35,19 @@
     <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <script>
-        window.onload = function() {
-            var theDelay = 5;
-            var timer = setTimeout(showText, theDelay * 1000)
-        }
-
-        function showText() {
-            document.getElementById("delayedText").style.visibility = "visible";
-        }
+        // delayedText is now revealed by the GSAP loader timeline — no setTimeout needed.
     </script>
 </head>
 
 <body>
     <div class="loader">
-        <div class="bar"></div>
-        <div class="counter"></div>
+        <div class="loader__panel loader__panel--left"></div>
+        <div class="loader__panel loader__panel--right"></div>
+        <div class="loader__content">
+            <div class="loader__number"><span class="counter">0</span><span class="loader__pct">%</span></div>
+            <div class="loader__label">Loading</div>
+            <div class="loader__progress"><div class="loader__progress-fill"></div></div>
+        </div>
     </div>
     <!-- cursor -->
     <div class="cursor"></div>
@@ -335,21 +333,80 @@
     <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            let count = 0; // only var and let will work but not const
-            let counter = setInterval(function() {
-                if (count < 101) {
-                    $('.counter').text(count + '%');
-                    $('.bar').css('width', count + '%')
-                    count++
+        /* ── Enhanced Loader with GSAP ── */
+        (function () {
+            // Duration constants (seconds)
+            var COUNT_DURATION  = 2.2;   // how long counting 0→100 takes
+            var HOLD_AFTER      = 0.25;  // pause at 100% before exit
+            var EXIT_DURATION   = 1.1;   // panels slide out
+            var CONTENT_IN      = 0.9;   // hero content reveal
+
+            var counterEl  = document.querySelector('.counter');
+            var fillEl     = document.querySelector('.loader__progress-fill');
+            var labelEl    = document.querySelector('.loader__label');
+            var panelLeft  = document.querySelector('.loader__panel--left');
+            var panelRight = document.querySelector('.loader__panel--right');
+            var loaderEl   = document.querySelector('.loader');
+
+            var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            // 1. Count 0 → 100 + fill progress bar
+            tl.to({ val: 0 }, {
+                val: 100,
+                duration: COUNT_DURATION,
+                ease: 'power2.inOut',
+                onUpdate: function () {
+                    var v = Math.round(this.targets()[0].val);
+                    counterEl.textContent = v;
+                    fillEl.style.width = v + '%';
                 }
-            }, 70)
-        });
-        gsap.to('.loader', 2, {
-            delay: 9,
-            y: "-100%",
-            ease: Expo.EaseInOut
-        });
+            })
+            // "loading" → "ready" label swap at 100
+            .add(function () {
+                labelEl.textContent = 'Ready';
+            })
+            // 2. Brief hold
+            .to({}, { duration: HOLD_AFTER })
+            // 3. Counter + label fade out
+            .to('.loader__content', {
+                opacity: 0,
+                y: -18,
+                duration: 0.35,
+                ease: 'power2.in'
+            })
+            // 4. Panels split and slide away (left exits left, right exits right)
+            .to(panelLeft, {
+                xPercent: -100,
+                duration: EXIT_DURATION,
+                ease: 'expo.inOut'
+            }, '<0.05')
+            .to(panelRight, {
+                xPercent: 100,
+                duration: EXIT_DURATION,
+                ease: 'expo.inOut'
+            }, '<')
+            // 5. Remove loader from layout so it doesn't block interaction
+            .add(function () {
+                loaderEl.style.display = 'none';
+            })
+            // 6. Hero content entrance — letters + subtitle slide up from below
+            .from('.hero-container .title span', {
+                y: 60,
+                opacity: 0,
+                duration: CONTENT_IN,
+                stagger: 0.04,
+                ease: 'expo.out'
+            }, '<0.1')
+            .from('#delayedText', {
+                opacity: 0,
+                y: 30,
+                duration: 0.7,
+                ease: 'power3.out',
+                onComplete: function () {
+                    document.getElementById('delayedText').style.visibility = 'visible';
+                }
+            }, '-=0.3');
+        })();
     </script>
     <script>
         // Custom cursor — desktop only (skip on touch devices)
