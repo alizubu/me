@@ -23,7 +23,12 @@ export default function PortfolioSection() {
             </span>
             <span> to view my Portfolio.</span>
           </p>
-          <p className="mt-5 pt-3" data-scroll="" data-scroll-speed="12" data-scroll-direction="horizontal">
+          <p
+            className="mt-5 pt-3"
+            data-scroll=""
+            data-scroll-speed="12"
+            data-scroll-direction="horizontal"
+          >
             Or{" "}
             <a href="https://www.behance.net/alizubu" target="_blank" rel="noopener noreferrer">
               here

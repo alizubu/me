@@ -5,14 +5,14 @@ import Image from "next/image";
 
 function calculateAge(birthday: string): number {
   const parts = birthday.split("/");
-  const birthDay = Number(parts[0]);
+  const birthDay   = Number(parts[0]);
   const birthMonth = Number(parts[1]);
-  const birthYear = Number(parts[2]);
+  const birthYear  = Number(parts[2]);
 
-  const today = new Date();
-  const todayYear = today.getFullYear();
+  const today      = new Date();
+  const todayYear  = today.getFullYear();
   const todayMonth = today.getMonth() + 1;
-  const todayDay = today.getDate();
+  const todayDay   = today.getDate();
 
   let age = todayYear - birthYear;
 
@@ -33,10 +33,20 @@ export default function AboutSection() {
       <div className="row d-flex fluid-container">
         <div className="col-12">
           <div className="hi">
-            <h1 className="serif" data-scroll="" data-scroll-speed="-3" data-scroll-direction="horizontal">
+            <h1
+              className="serif"
+              data-scroll=""
+              data-scroll-speed="-3"
+              data-scroll-direction="horizontal"
+            >
               Hi! <span className="ec ec-wave emoji"></span>
             </h1>
-            <h3 className="serif primary-color" data-scroll="" data-scroll-speed="1" data-scroll-direction="horizontal">
+            <h3
+              className="serif primary-color"
+              data-scroll=""
+              data-scroll-speed="1"
+              data-scroll-direction="horizontal"
+            >
               How you doin?
             </h3>
           </div>
@@ -44,10 +54,10 @@ export default function AboutSection() {
         <div className="col-12 col-lg-8">
           <p>
             My name is <strong>Ali Zubu</strong> 👨‍💻, I&apos;m{" "}
-            {age} and I live in Chattogram, a location
-            that&apos;s famous for green areas of natural beauty due to mountains,
-            sea, and valleys, a district located in the south-eastern region of
-            Bangladesh.
+            {age} and I live in Chattogram, a location that&apos;s
+            famous for green areas of natural beauty due to mountains,
+            sea, and valleys, a district located in the south-eastern
+            region of Bangladesh.
           </p>
         </div>
         <div className="img-container mt-5 mt-lg-0">
