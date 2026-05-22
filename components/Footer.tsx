@@ -12,7 +12,7 @@ export default function Footer() {
         data-scroll-position="bottom"
       >
         <p id="year">
-          Made With ❤️<span className="d-none d-md-inline">© </span>
+          Made With <span className="emoji-inline">❤️</span><span className="d-none d-md-inline">© </span>
           {new Date().getFullYear()} — Ali Zubu
         </p>
         <div className="d-flex">

@@ -1,7 +1,6 @@
 /* ---- Imports ---- */
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
 @import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
-@import url(https://unpkg.com/emoji.css/dist/emoji.min.css);
 @import url(https://unpkg.com/splitting/dist/splitting.css);
 @import url(https://unpkg.com/splitting/dist/splitting-cells.css);
 @import url(https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.css);
@@ -395,6 +394,7 @@ footer a:hover {
 /* ---- Wave emoji ---- */
 .hi .emoji {
   font-size: clamp(1.6rem, 15vw, 2.12rem) !important;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
   -webkit-animation-name: wave-animation;
   animation-name: wave-animation;
   -webkit-animation-duration: 2.5s;
@@ -402,6 +402,13 @@ footer a:hover {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+/* ---- Inline emoji (Apple Color Emoji on all platforms) ---- */
+.emoji-inline {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-style: normal;
   display: inline-block;
 }
 

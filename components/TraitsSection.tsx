@@ -9,7 +9,7 @@ export default function TraitsSection() {
         >
           <p className="big">
             <strong>
-              I&apos;m a sunny <span className="ec ec-sun-with-face"></span> and
+              I&apos;m a sunny <span className="emoji-inline">☀️</span> and
               determined person.
             </strong>
           </p>
@@ -30,7 +30,7 @@ export default function TraitsSection() {
           </p>
           <p>
             I can do a bit of everything{" "}
-            <span className="ec ec-firecracker"></span> although I&apos;m
+            <span className="emoji-inline">🧨</span> although I&apos;m
             specialized in some areas in particular.
           </p>
         </div>

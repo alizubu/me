@@ -39,7 +39,7 @@ export default function AboutSection() {
               data-scroll-speed="-3"
               data-scroll-direction="horizontal"
             >
-              Hi! <span className="ec ec-wave emoji"></span>
+              Hi! <span className="emoji">👋</span>
             </h1>
             <h3
               className="serif primary-color"
@@ -53,7 +53,7 @@ export default function AboutSection() {
         </div>
         <div className="col-12 col-lg-8">
           <p>
-            My name is <strong>Ali Zubu</strong> 👨‍💻, I&apos;m{" "}
+            My name is <strong>Ali Zubu</strong> <span className="emoji-inline">👨‍💻</span>, I&apos;m{" "}
             {age} and I live in Chattogram, a location that&apos;s
             famous for green areas of natural beauty due to mountains,
             sea, and valleys, a district located in the south-eastern
