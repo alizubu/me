@@ -4,7 +4,7 @@ export default function TraitsSection() {
       <div className="row d-flex fluid-container">
         <div className="col-12 col-lg-5" data-scroll="" data-scroll-speed="4">
           <p className="big">
-            <strong>I&apos;m a sunny ☀️ and determined person.</strong>
+            <strong>I&apos;m a sunny <span className="ec ec-sun-with-face"></span> and determined person.</strong>
           </p>
           <p>
             I like to be inspired by the latest trends, finding new ideas and
@@ -17,7 +17,7 @@ export default function TraitsSection() {
             <strong>I&apos;m a Multidisciplinary Designer</strong>.
           </p>
           <p>
-            I can do a bit of everything 🧨 although I&apos;m specialized in some
+            I can do a bit of everything <span className="ec ec-firecracker"></span> although I&apos;m specialized in some
             areas in particular.
           </p>
         </div>

@@ -34,7 +34,7 @@ export default function AboutSection() {
         <div className="col-12">
           <div className="hi">
             <h1 className="serif" data-scroll="" data-scroll-speed="-3" data-scroll-direction="horizontal">
-              Hi! <span className="ec ec-wave emoji">👋</span>
+              Hi! <span className="ec ec-wave emoji"></span>
             </h1>
             <h3 className="serif primary-color" data-scroll="" data-scroll-speed="1" data-scroll-direction="horizontal">
               How you doin?

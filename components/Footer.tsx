@@ -11,7 +11,7 @@ export default function Footer() {
         data-scroll-target="#colophon"
         data-scroll-position="bottom"
       >
-        <p id="year">Made With ❤️ © {new Date().getFullYear()} — Ali Zubu</p>
+        <p id="year">Made With ❤️<span className="d-none d-md-inline">© </span>{new Date().getFullYear()} — Ali Zubu</p>
         <div className="d-flex">
           <p>
             <Link href="/privacy">Privacy</Link> /{" "}

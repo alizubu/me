@@ -16,7 +16,7 @@ export default function PortfolioSection() {
           </h3>
           <p data-scroll="" className="big forced">
             <span>
-              👉{" "}
+              <i className="ec ec-point-right"></i>{" "}
               <a href="https://www.behance.net/alizubu" target="_blank" rel="noopener noreferrer">
                 Click here
               </a>
@@ -28,7 +28,7 @@ export default function PortfolioSection() {
             <a href="https://www.behance.net/alizubu" target="_blank" rel="noopener noreferrer">
               here
             </a>
-            . 👈
+            . <span className="ec ec-point-left"></span>
           </p>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default function PortfolioSection() {
             </a>
             .
           </span>
-          <span style={{ margin: "0 auto" }}>👆</span>
+          <span className="ec ec-point-up-2" style={{ margin: "0 auto" }}></span>
         </p>
       </div>
     </section>

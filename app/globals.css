@@ -1,5 +1,9 @@
 /* ---- Import ---- */
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css);
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css);
+@import url(https://unpkg.com/emoji.css/dist/emoji.min.css);
+@import url(https://unpkg.com/splitting/dist/splitting.css);
+@import url(https://unpkg.com/splitting/dist/splitting-cells.css);
 /* locomotive-scroll styles handled by the npm package */
 
 @font-face {
@@ -800,61 +804,6 @@ footer p {
 .section.hero .circle-elements {
   position: relative;
   z-index: 1;
-}
-
-/* Bootstrap-like utilities */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.d-flex { display: flex; }
-.d-none { display: none; }
-.d-block { display: block; }
-
-@media (min-width: 768px) {
-  .d-md-block { display: block; }
-  .d-md-inline { display: inline; }
-}
-
-.justify-content-end { justify-content: flex-end; }
-.justify-content-start { justify-content: flex-start; }
-.text-center { text-align: center; }
-
-.col-12 { flex: 0 0 100%; max-width: 100%; }
-
-@media (min-width: 768px) {
-  .col-md-6 { flex: 0 0 50%; max-width: 50%; }
-  .col-md-8 { flex: 0 0 66.666%; max-width: 66.666%; }
-}
-
-@media (min-width: 992px) {
-  .col-lg-5 { flex: 0 0 41.666%; max-width: 41.666%; }
-  .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
-  .col-lg-8 { flex: 0 0 66.666%; max-width: 66.666%; }
-}
-
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 3rem; }
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: 0.25rem; }
-.pt-3 { padding-top: 1rem; }
-.pb-4 { padding-bottom: 1.5rem; }
-
-@media (min-width: 992px) {
-  .mt-lg-0 { margin-top: 0; }
-  .mt-lg-5 { margin-top: 3rem; }
-}
-
-@media (min-width: 1200px) {
-  .mt-xl-3 { margin-top: 1rem; }
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
 }
 
 /* contact info */
