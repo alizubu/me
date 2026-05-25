@@ -391,10 +391,21 @@ footer a:hover {
   .hero .designer { left: 20%; }
 }
 
-/* ---- Wave emoji ---- */
-.hi .emoji {
+/* ---- Twemoji ---- */
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+/* wave animation applies to the img twemoji replaces it with */
+.hi .emoji,
+.hi img.emoji {
   font-size: clamp(1.6rem, 15vw, 2.12rem) !important;
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  height: 1em;
+  width: 1em;
   -webkit-animation-name: wave-animation;
   animation-name: wave-animation;
   -webkit-animation-duration: 2.5s;
@@ -405,10 +416,12 @@ footer a:hover {
   display: inline-block;
 }
 
-/* ---- Inline emoji (Apple Color Emoji on all platforms) ---- */
-.emoji-inline {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  font-style: normal;
+/* ---- Inline emoji ---- */
+.emoji-inline,
+.emoji-inline img.emoji {
+  height: 1em;
+  width: 1em;
+  vertical-align: -0.1em;
   display: inline-block;
 }
 
