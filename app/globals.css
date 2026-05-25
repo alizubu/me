@@ -391,21 +391,22 @@ footer a:hover {
   .hero .designer { left: 20%; }
 }
 
-/* ---- Twemoji ---- */
-img.emoji {
+/* ---- Apple emoji images ---- */
+.apple-emoji {
+  display: inline-block;
   height: 1em;
   width: 1em;
-  margin: 0 0.05em 0 0.1em;
-  vertical-align: -0.1em;
-  display: inline-block;
+  vertical-align: -0.15em;
+  object-fit: contain;
 }
 
-/* wave animation applies to the img twemoji replaces it with */
-.hi .emoji,
-.hi img.emoji {
+/* ---- Wave emoji ---- */
+.hi .emoji {
   font-size: clamp(1.6rem, 15vw, 2.12rem) !important;
   height: 1em;
   width: 1em;
+  vertical-align: -0.15em;
+  object-fit: contain;
   -webkit-animation-name: wave-animation;
   animation-name: wave-animation;
   -webkit-animation-duration: 2.5s;
@@ -413,15 +414,6 @@ img.emoji {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
-  display: inline-block;
-}
-
-/* ---- Inline emoji ---- */
-.emoji-inline,
-.emoji-inline img.emoji {
-  height: 1em;
-  width: 1em;
-  vertical-align: -0.1em;
   display: inline-block;
 }
 

@@ -12,7 +12,10 @@ export default function Footer() {
         data-scroll-position="bottom"
       >
         <p id="year">
-          Made With <span className="emoji-inline">❤️</span><span className="d-none d-md-inline">© </span>
+          Made With{" "}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/emoji/heart.png" alt="❤️" className="apple-emoji" />
+          <span className="d-none d-md-inline">© </span>
           {new Date().getFullYear()} — Ali Zubu
         </p>
         <div className="d-flex">

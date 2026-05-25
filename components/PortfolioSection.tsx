@@ -16,7 +16,8 @@ export default function PortfolioSection() {
           </h3>
           <p data-scroll="" className="big forced">
             <span>
-              <span className="emoji-inline">👉</span>{" "}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/emoji/point-right.png" alt="👉" className="apple-emoji" />{" "}
               <a href="https://www.behance.net/alizubu" target="_blank" rel="noopener noreferrer">
                 Click here
               </a>
@@ -33,7 +34,9 @@ export default function PortfolioSection() {
             <a href="https://www.behance.net/alizubu" target="_blank" rel="noopener noreferrer">
               here
             </a>
-            . <span className="emoji-inline">👈</span>
+            .{" "}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/emoji/point-left.png" alt="👈" className="apple-emoji" />
           </p>
         </div>
       </div>
@@ -46,7 +49,8 @@ export default function PortfolioSection() {
             </a>
             .
           </span>
-          <span className="emoji-inline" style={{ margin: "0 auto" }}>👆</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/emoji/point-up.png" alt="👆" className="apple-emoji" style={{ margin: "0 auto", display: "block" }} />
         </p>
       </div>
     </section>

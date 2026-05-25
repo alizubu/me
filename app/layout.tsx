@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import TwemojiLoader from "@/components/TwemojiLoader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,10 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        {children}
-        <TwemojiLoader />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

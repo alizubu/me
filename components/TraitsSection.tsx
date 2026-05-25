@@ -9,8 +9,10 @@ export default function TraitsSection() {
         >
           <p className="big">
             <strong>
-              I&apos;m a sunny <span className="emoji-inline">☀️</span> and
-              determined person.
+              I&apos;m a sunny{" "}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/emoji/sun.png" alt="☀️" className="apple-emoji" />{" "}
+              and determined person.
             </strong>
           </p>
           <p>
@@ -30,8 +32,9 @@ export default function TraitsSection() {
           </p>
           <p>
             I can do a bit of everything{" "}
-            <span className="emoji-inline">🧨</span> although I&apos;m
-            specialized in some areas in particular.
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/emoji/firecracker.png" alt="🧨" className="apple-emoji" />{" "}
+            although I&apos;m specialized in some areas in particular.
           </p>
         </div>
       </div>
